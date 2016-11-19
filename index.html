@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Viseract</title>
+	
+	
+	<link rel="stylesheet" type="text/css" href="css/dc.css">
+    <link rel="stylesheet" type="text/css" href="css/leaflet.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="lib/demo.css">
+	
+	<script src="lib/pdollar.js"></script>
+	<script src="lib/tracking-min.js"></script>
+	<script src="lib/dat.gui.min.js"></script>
+	<script src="lib/stats.min.js"></script>
+	<script src="lib/color_camera_gui.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+	<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/html2canvas.js"></script>
+	<script src="js/script2.js"></script>
+	<script src="js/charts.js"></script>	
+	
+	
+<script type="text/javascript" src="js/crossfilter.js"></script>
+<script type="text/javascript" src="js/dc.js"></script>
+<script type="text/javascript" src="js/d3.tip.min.js"></script>
+<script type="text/javascript" src="js/leaflet.js"></script>
+<script type="text/javascript" src="js/underscore-min.js"></script>
+<script type="text/javascript" src="js/vis2.js"></script>
+
+
+  </head>
+<body>
+<video id="video" width=480 height="300" preload autoplay loop muted controls></video>
+<div class="cursor"></div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 dc-data-count dc-chart" id="data-count">
+      <h2>Breweries
+        <small>
+          <span class="filter-count"></span> selected out of <span class="total-count"></span> records |
+           <a id="all" href="#">Reset All</a>
+          </span>
+        </small>
+      </h2>
+    </div>
+  </div>
+   <div class="row">
+       <div class="col-xs-12">
+      
+    <div id="map"></div> 
+    </div>
+   </div>
+  <div class="row" id="control-row">
+    <div class="col-xs-4 pie-chart">
+      <h4>Day <small><a id="day">reset</a></small></h4>
+      <div id="chart-ring-day" class="dc-chart"></div>
+    </div>
+    <div class="col-xs-8 ">
+      <h4>IBU Count <small><a id="ibu">reset</a></small></h4>
+      <div class="dc-chart" id="chart-ibu-count"></div>
+    </div>
+  </div>
+ 
+  <div class="row hide">
+    <div class="col-xs-12">
+      <table class="table table-bordered table-striped" id="data-table">
+        <thead>
+          <tr class="header">
+            <th>Brewery</th>
+            <th>Beer</th>
+            <th>Style</th>
+            <th>My Rating</th>
+            <th>Community Rating</th>
+            <th>ABV %</th>
+            <th>IBU</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id='overlay'></div>
+	
+	<canvas id="canvas" width="600" height="450"></canvas>
+	
+  
+
+</body>
+</html>
