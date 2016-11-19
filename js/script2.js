@@ -5,7 +5,7 @@ window.onload = function() {
 	var scaleY = height/300;
 	var mouseX=0,mouseY=0;
 	var timerId;
-	
+	var orderding_type=0;
 	
 	var cursor =   d3.select(".cursor");
 	createChart();
@@ -67,11 +67,11 @@ window.onload = function() {
 	        			svgContainer = d3.select("#overlay").append("svg")
 	        			.attr("width", width)
 	        			.attr("height",height)
-	        			.attr("class","svg-container");
+	        			.attr("class","svg-container")
+	        			
 	        			svgPath = svgContainer.append("svg:path")
-	        			 				 .style("stroke", "#000")
-	        			 				 .style("strokeWidth","5px")
-	        			 				 .style("fill","none");
+	        			 				 .style("fill","none")
+	        			 				 ;
 	        		  svgPath.attr("d","M "+(width- scaleX*rect.x)+" "+rect.y); //Set path's data
 		        		  _points.length = 0;
 		        		  _strokeID=1;
@@ -79,7 +79,7 @@ window.onload = function() {
 	        	  if(rect.x){
 	        		  _points[_points.length] = new Point(rect.x, rect.y, _strokeID);
 	        		  svgPath.attr("d",svgPath.attr("d")+" L "+(width- scaleX*rect.x)+" "+rect.y); //Set path's data
-		           //  executeActions();
+//		             executeActions();
 	        		  //drawShape(rect.x,rect.y);
 	        		  
 	        	  }
@@ -183,8 +183,6 @@ window.onload = function() {
 	}
 	
 	function executeAction(){
-		
-
 
 		d3.select("#overlay svg").remove();
 		var result = _r.Recognize(_points);
@@ -198,8 +196,9 @@ window.onload = function() {
 			
 		else if(result.Name =='caret-down')
 			mapNew.zoomOut();
+		
 		else if(result.Name =='arrow'){
-						
+			
 			ibuCountChart  = dc.barChart('#chart-ibu-count')
 				ibuCountChart
 				.width(800)
@@ -212,9 +211,20 @@ window.onload = function() {
 				.centerBar(false)
 				.gap(7)
 				.margins({top: 10, right: 20, bottom: 50, left: 50})
-			.ordering(function(d) {
-				return -d.key; })
+				.ordering(function(d) {
+					if (orderding_type==0)
+						return -d.value; 
+					else
+						return d.key; 
+				})
+				
 			ibuCountChart.render();
+			
+			d3.selectAll(".bar").call(barTip);
+			d3.selectAll(".bar").on('mouseover', barTip.show)
+		      .on('mouseout', barTip.hide);  
+		  
+		  orderding_type=(orderding_type+1)%2;
 		}
 		
 		  

@@ -20,7 +20,7 @@ var pieTip = d3.tip()
     	return "<span style='color: #f0027f'>" +  d.data.key + "</span> : "  + (d.value); });
 
 //tooltips for bar chart
-var barTip = d3.tip()
+barTip = d3.tip()
     .attr('class', 'd3-tip')
     .offset([-10, 0])
     .html(function (d) {
