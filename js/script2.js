@@ -60,13 +60,13 @@ window.onload = function() {
 	          if (rect.color === 'cyan') {
 				  console.log(rect)
 	        	  clearTimeout(timerId)
-	        	  timerId = setTimeout(executeAction, 2000);
+	        	  timerId = setTimeout(executeAction, 500);
 
 	        	  if (_strokeID == 0) // starting a new gesture
 					{
 	        			svgContainer = d3.select("#overlay").append("svg")
-	        			.attr("width", width)
-	        			.attr("height",height)
+	        			.attr("width", $(window).width())
+	        			.attr("height",$(window).height())
 	        			.attr("class","svg-container")
 	        			
 	        			svgPath = svgContainer.append("svg:path")
